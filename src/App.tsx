@@ -2,16 +2,8 @@ import { useState } from "react";
 
 const App = () => {
   const [count, setCount] = useState(0);
-  const countUp1 = () => {
-    // 追加
-    const newCount = count + 1;
-    setCount(newCount);
-  };
-  const countUp10 = () => {
-    // 追加
-    const newCount = count + 10;
-    setCount(newCount);
-  };
+  const countUp1 = () => setCount(count + 1);
+  const countUp10 = () => setCount(count + 10);
   return (
     <div className="mx-4 mt-10 max-w-2xl md:mx-auto">
       <h1 className="mb-6 text-2xl font-bold">TodoApp</h1>
