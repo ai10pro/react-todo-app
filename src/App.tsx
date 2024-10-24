@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 const App = () => {
+  const hoge = "Hoge";
   const [count, setCount] = useState(0);
   const countUp = () => {
     const newCount = count + 1;
