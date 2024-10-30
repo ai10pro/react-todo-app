@@ -1,55 +1,26 @@
 import { useState } from "react";
+import { Todo } from "./types";
+import { initTodos } from "./initTodos";
+import WelcomeMessage from "./WelcomeMessage";
+import TodoList from "./TodoList";
 
 const App = () => {
-  const [count, setCount] = useState(0);
-  const reset = () => setCount(0);
-  const countUp1 = () => setCount(count + 1);
-  const countUp10 = () => setCount(count + 10);
-  const degrease = () => setCount(count - 1);
-  const degrease10 = () => setCount(count - 10);
+  const [todos, setTodos] = useState<Todo[]>(initTodos);
+  const uncompletedCount = initTodos.filter(
+    (todo: Todo) => !todo.isDone
+  ).length; // 未完了タスクの数え上げ
+  console.log(JSON.stringify(todos, null, 2));
+
   return (
     <div className="mx-4 mt-10 max-w-2xl md:mx-auto">
-      <h1 className="mb-6 text-2xl font-bold">TodoApp</h1>
-      <div className="mb-2">
-        <p>
-          現在のカウント値は
-          <span className="text-xl font-bold text-blue-500"> {count} </span>です
-        </p>
+      <h1 className="mb-4 text-2xl font-bold">TodoApp</h1>
+      <div className="mb-4">
+        <WelcomeMessage
+          name="寝屋川タヌキ"
+          uncompletedCount={uncompletedCount}
+        />
       </div>
-      <div className="flex space-x-2">
-        <button
-          className="rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-700"
-          onClick={degrease10}
-        >
-          10 down
-        </button>
-        <button
-          className="rounded-md bg-blue-400 px-4 py-2 text-white hover:bg-blue-700"
-          onClick={degrease}
-        >
-          10 down
-        </button>
-        
-        <button
-          className="rounded-md bg-red-500 px-4 py-2 text-white hover:bg-blue-700"
-          onClick={reset}
-        >
-          Reset
-        </button>
-        <button
-          className="rounded-md bg-blue-400 px-4 py-2 text-white hover:bg-blue-700"
-          onClick={countUp1}
-        >
-          1 Up
-        </button>
-        <button
-          className="rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-700"
-          onClick={countUp10}
-        >
-          10 Up
-        </button>
-
-      </div>
+      <TodoList todos={todos} />
     </div>
   );
 };

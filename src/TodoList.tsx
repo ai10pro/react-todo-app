@@ -1,23 +1,25 @@
-import React from 'react'
-import { Todo } from './types'
+import React from "react";
+import { Todo } from "./types";
 
 type Props = {
-    todos: Todo[]
+    todos: Todo[];
 };
 
-export const TodoList = (props: Props) => {
+const TodoList = (props: Props) => {
     const todos = props.todos;
     return (
         <div className="space-y-1">
             <div>
-                {todos[0].name} 優先度 {todos[0].priority}
+                {todos[0].name} 優先度: {todos[0].priority}
             </div>
             <div>
-                {todos[1].name} 優先度 {todos[1].priority}
+                {todos[1].name} 優先度: {todos[1].priority}
             </div>
             <div>
-                {todos[2].name} 優先度 {todos[2].priority}
+                {todos[2].name} 優先度: {todos[2].priority}
             </div>
         </div>
-    )
-}
+    );
+};
+
+export default TodoList;
