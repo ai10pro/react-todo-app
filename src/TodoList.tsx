@@ -24,7 +24,6 @@ const TodoList = (props: Props) => {
       return aDeadline - bDeadline;
     }
   });
-  //   const todos = [...props.todos];
 
   if (todos.length === 0) {
     return <div className="text-red-500">やることがありません！</div>;
@@ -36,7 +35,7 @@ const TodoList = (props: Props) => {
         <div
           key={todo.id}
           className={twMerge(
-            "rounded-md border border-slate-400 bg-white px-3 py-2 drop-shadow-sm ", // hover:scale-105 transition-transform duration-200
+            "rounded-md border border-slate-400 bg-white px-3 py-2 drop-shadow-sm ",
             todo.isDone && "bg-blue-50 opacity-50",
             todo.deadline && todo.deadline < new Date() && "bg-red-100"
           )}
@@ -45,7 +44,12 @@ const TodoList = (props: Props) => {
             <input
               type="checkbox"
               checked={todo.isDone}
-              onClick={(e) => props.updateIsDone(todo.id, e.target.checked)}
+              onClick={(e) =>
+                props.updateIsDone(
+                  todo.id,
+                  (e.target as HTMLInputElement).checked
+                )
+              }
               className="mr-1.5 cursor-pointer"
             />
             <FontAwesomeIcon
