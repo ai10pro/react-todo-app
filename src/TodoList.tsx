@@ -13,15 +13,16 @@ const numToStar = (num: number) => {
 };
 
 const TodoList = (props: Props) => {
-  const todos = [...props.todos].sort((a, b) => {
-    if (a.isDone !== b.isDone) {
-      return a.isDone ? 1 : -1;
-    } else {
-      const aDeadline = a.deadline ? a.deadline.getTime() : 0;
-      const bDeadline = b.deadline ? b.deadline.getTime() : 0;
-      return aDeadline - bDeadline;
-    }
-  });
+  // const todos = [...props.todos].sort((a, b) => {
+  //   if (a.isDone !== b.isDone) {
+  //     return a.isDone ? 1 : -1;
+  //   } else {
+  //     const aDeadline = a.deadline ? a.deadline.getTime() : 0;
+  //     const bDeadline = b.deadline ? b.deadline.getTime() : 0;
+  //     return aDeadline - bDeadline;
+  //   }
+  // });
+  const todos = [...props.todos];
 
   if (todos.length === 0) {
     return <div className="text-red-500">やることがありません！</div>;
