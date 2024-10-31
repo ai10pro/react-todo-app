@@ -6,6 +6,8 @@ import { faFile, faFileCircleCheck } from "@fortawesome/free-solid-svg-icons";
 
 type Props = {
   todos: Todo[];
+  updateIsDone: (id: string, value: boolean) => void;
+  remove: (id: string) => void;
 };
 
 const numToStar = (num: number) => {
@@ -13,16 +15,16 @@ const numToStar = (num: number) => {
 };
 
 const TodoList = (props: Props) => {
-  // const todos = [...props.todos].sort((a, b) => {
-  //   if (a.isDone !== b.isDone) {
-  //     return a.isDone ? 1 : -1;
-  //   } else {
-  //     const aDeadline = a.deadline ? a.deadline.getTime() : 0;
-  //     const bDeadline = b.deadline ? b.deadline.getTime() : 0;
-  //     return aDeadline - bDeadline;
-  //   }
-  // });
-  const todos = [...props.todos];
+  const todos = [...props.todos].sort((a, b) => {
+    if (a.isDone !== b.isDone) {
+      return a.isDone ? 1 : -1;
+    } else {
+      const aDeadline = a.deadline ? a.deadline.getTime() : 0;
+      const bDeadline = b.deadline ? b.deadline.getTime() : 0;
+      return aDeadline - bDeadline;
+    }
+  });
+  //   const todos = [...props.todos];
 
   if (todos.length === 0) {
     return <div className="text-red-500">やることがありません！</div>;
@@ -34,12 +36,18 @@ const TodoList = (props: Props) => {
         <div
           key={todo.id}
           className={twMerge(
-            "rounded-md border border-slate-400 bg-white px-3 py-2 drop-shadow-sm hover:scale-105 transition-transform duration-200",
+            "rounded-md border border-slate-400 bg-white px-3 py-2 drop-shadow-sm ", // hover:scale-105 transition-transform duration-200
             todo.isDone && "bg-blue-50 opacity-50",
             todo.deadline && todo.deadline < new Date() && "bg-red-100"
           )}
         >
           <div className="flex items-baseline text-slate-700">
+            <input
+              type="checkbox"
+              checked={todo.isDone}
+              onClick={(e) => props.updateIsDone(todo.id, e.target.checked)}
+              className="mr-1.5 cursor-pointer"
+            />
             <FontAwesomeIcon
               icon={todo.isDone ? faFileCircleCheck : faFile}
               className="mr-1"
@@ -56,6 +64,12 @@ const TodoList = (props: Props) => {
             <div className={twMerge("ml-2 text-orange-400")}>
               {numToStar(todo.priority)}
             </div>
+            <button
+              onClick={() => props.remove(todo.id)}
+              className="ml-auto rounded-md bg-slate-200 px-2 py-1 text-sm font-bold text-white hover:bg-red-500"
+            >
+              削除
+            </button>
           </div>
           <div className="">
             {todo.deadline ? (

@@ -18,7 +18,7 @@ const App = () => {
 
   const uncompletedCount = todos.filter((todo: Todo) => !todo.isDone).length;
 
-  // ▼▼ 追加
+  // バリデーションの定義
   const isValidTodoName = (name: string): string => {
     if (name.length < 2 || name.length > 32) {
       return "2文字以上、32文字以内で入力してください";
@@ -26,16 +26,16 @@ const App = () => {
       return "";
     }
   };
-
+  // 新しいタスク名設定の関数
   const updateNewTodoName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewTodoNameError(isValidTodoName(e.target.value)); // ◀◀ 追加
+    setNewTodoNameError(isValidTodoName(e.target.value));
     setNewTodoName(e.target.value);
   };
-
+  // 新しいタスクの優先度設定の関数
   const updateNewTodoPriority = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewTodoPriority(Number(e.target.value));
   };
-
+  // 新しいタスクの期限設定の関数
   const updateDeadline = (e: React.ChangeEvent<HTMLInputElement>) => {
     const dt = e.target.value; // UIで日時が未設定のときは空文字列 "" が dt に格納される
     console.log(`UI操作で日時が "${dt}" (${typeof dt}型) に変更されました。`);
@@ -43,7 +43,6 @@ const App = () => {
   };
 
   const addNewTodo = () => {
-    // ▼▼ 編集
     const err = isValidTodoName(newTodoName);
     if (err !== "") {
       setNewTodoNameError(err);
@@ -63,6 +62,28 @@ const App = () => {
     setNewTodoDeadline(null);
   };
 
+  // タスクの完了状態を更新する関数
+  const updateIsDone = (id: string, value: boolean) => {
+    const updatedTodos = todos.map((todo) => {
+      if (todo.id === id) {
+        return { ...todo, isDone: value }; // スプレッド構文
+      } else {
+        return todo;
+      }
+    });
+    setTodos(updatedTodos);
+  };
+  // 完了済みのタスクを削除する関数
+  const removeCompletedTodos = () => {
+    const updatedTodos = todos.filter((todo) => !todo.isDone);
+    setTodos(updatedTodos);
+  };
+  // タスクを削除する関数
+  const remove = (id: string) => {
+    const updatedTodos = todos.filter((todo) => todo.id !== id);
+    setTodos(updatedTodos);
+  };
+
   return (
     <div className="mx-4 mt-10 max-w-2xl md:mx-auto">
       <h1 className="mb-4 text-2xl font-bold">TodoApp</h1>
@@ -72,7 +93,17 @@ const App = () => {
           uncompletedCount={uncompletedCount}
         />
       </div>
-      <TodoList todos={todos} />
+      <TodoList todos={todos} updateIsDone={updateIsDone} remove={remove} />
+
+      <button
+        type="button"
+        onClick={removeCompletedTodos}
+        className={
+          "mt-5 rounded-md bg-red-500 px-3 py-1 font-bold text-white hover:bg-red-600"
+        }
+      >
+        完了済みのタスクを削除
+      </button>
 
       <div className="mt-5 space-y-2 rounded-md border p-3">
         <h2 className="text-lg font-bold">新しいタスクの追加</h2>
