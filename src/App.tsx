@@ -33,7 +33,18 @@ const App = () => {
   };
   // 新しいタスクの優先度設定の関数
   const updateNewTodoPriority = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewTodoPriority(Number(e.target.value));
+    console.log(`UI操作で優先度が "${e.target.value}" に変更されました。`);
+    switch (e.target.value) {
+      case "1":
+        setNewTodoPriority(1);
+        break;
+      case "2":
+        setNewTodoPriority(2);
+        break;
+      case "3":
+        setNewTodoPriority(3);
+        break;
+    }
   };
   // 新しいタスクの期限設定の関数
   const updateDeadline = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -139,14 +150,14 @@ const App = () => {
 
         <div className="flex gap-5">
           <div className="font-bold">優先度</div>
-          {[1, 2, 3].map((value) => (
+          {["低", "中", "高"].map((value, index) => (
             <label key={value} className="flex items-center space-x-1">
               <input
-                id={`priority-${value}`}
+                id={`priority-${index + 1}`}
                 name="priorityGroup"
                 type="radio"
-                value={value}
-                checked={newTodoPriority === value}
+                value={index + 1}
+                checked={newTodoPriority === index + 1}
                 onChange={updateNewTodoPriority}
               />
               <span>{value}</span>
