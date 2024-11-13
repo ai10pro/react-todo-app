@@ -39,3 +39,9 @@ SOFTWARE.
 - 期日ソート、優先度ソートの追加
 - タグ機能（色分け or ハッシュタグ）
 - カレンダー表示
+
+## 更新ごとに行う処理
+```
+npm run predeploy
+npm run deploy
+```
