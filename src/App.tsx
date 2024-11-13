@@ -12,7 +12,7 @@ import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons"; // â—
 const App = () => {
   const [todos, setTodos] = useState<Todo[]>(initTodos);
   const [newTodoName, setNewTodoName] = useState("");
-  const [newTodoPriority, setNewTodoPriority] = useState(3);
+  const [newTodoPriority, setNewTodoPriority] = useState(1);
   const [newTodoDeadline, setNewTodoDeadline] = useState<Date | null>(null);
   const [newTodoNameError, setNewTodoNameError] = useState("");
 
