@@ -29,10 +29,9 @@ const TodoItem = (props: Props) => {
         <input
           type="checkbox"
           checked={todo.isDone}
-          onClick={(e) =>
+          onChange={(e) =>
             props.updateIsDone(
-              todo.id,
-              (e.target as HTMLInputElement).checked
+              todo.id, e.target.checked
             )
           }
           className="mr-1.5 cursor-pointer"
