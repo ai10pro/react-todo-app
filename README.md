@@ -5,6 +5,8 @@ React、TypeScript、Tailwind CSS を使用し、ローカルストレージで�
 ## 開発履歴
 
 - 2024年10月24日：プロジェクト開始
+- 2024年11月13日：デプロイ（仮完成）、以降追加機能作成
+- 
 
 ## ライセンス
 
@@ -29,3 +31,11 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+## 追加予定機能
+- ToDoの編集
+- オーバーレイ表示による編集・追加
+- ToDo追加時の優先度表示を☆印表示に
+- 期日ソート、優先度ソートの追加
+- タグ機能（色分け or ハッシュタグ）
+- カレンダー表示
