@@ -29,11 +29,7 @@ const TodoItem = (props: Props) => {
         <input
           type="checkbox"
           checked={todo.isDone}
-          onChange={(e) =>
-            props.updateIsDone(
-              todo.id, e.target.checked
-            )
-          }
+          onChange={(e) => props.updateIsDone(todo.id, e.target.checked)}
           className="mr-1.5 cursor-pointer"
         />
         <FontAwesomeIcon
@@ -52,12 +48,18 @@ const TodoItem = (props: Props) => {
         <div className={twMerge("ml-2 text-orange-400")}>
           {numToStar(todo.priority)}
         </div>
-        <button
-          onClick={() => props.remove(todo.id)}
-          className="ml-auto rounded-md bg-slate-200 px-2 py-1 text-sm font-bold text-white hover:bg-red-500"
-        >
-          削除
-        </button>
+        <div className="ml-auto justify-between text-center ">
+          <button
+            onClick={() => props.remove(todo.id)}
+            className="rounded-md bg-slate-200 px-2 py-1 text-sm font-bold text-white hover:bg-red-500"
+          >
+            削除
+          </button>
+
+          <button className="ml-3 rounded-md bg-slate-200 px-2 py-1 text-sm font-bold text-white hover:bg-blue-400">
+            編集
+          </button>
+        </div>
       </div>
       <div className="">
         {todo.deadline ? (
@@ -75,7 +77,7 @@ const TodoItem = (props: Props) => {
         ) : null}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default TodoItem;

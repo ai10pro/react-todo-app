@@ -9,6 +9,7 @@ import { twMerge } from "tailwind-merge";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 
+import InputModal from "./inputTodoModal";
 
 const App = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -16,6 +17,8 @@ const App = () => {
   const [newTodoPriority, setNewTodoPriority] = useState(1);
   const [newTodoDeadline, setNewTodoDeadline] = useState<Date | null>(null);
   const [newTodoNameError, setNewTodoNameError] = useState("");
+
+  const [showModal, setShowModal] = useState(false);
 
   const [initialized, setInitialized] = useState(false);
   const localStorageKey = "TodoApp";
@@ -45,10 +48,7 @@ const App = () => {
     }
   }, [todos, initialized]);
 
-  const uncompletedCount = todos.filter(
-    (todo: Todo) => !todo.isDone
-  ).length;
-
+  const uncompletedCount = todos.filter((todo: Todo) => !todo.isDone).length;
 
   // バリデーションの定義
   const isValidTodoName = (name: string): string => {
@@ -127,6 +127,10 @@ const App = () => {
     setTodos(updatedTodos);
   };
 
+  // showFlagの状態を変更する関数
+  const ShowModal = () => {
+    setShowModal(!showModal);
+  };
   return (
     <div className="mx-4 mt-10 max-w-2xl md:mx-auto">
       <h1 className="mb-4 text-2xl font-bold">TodoApp</h1>
@@ -225,6 +229,11 @@ const App = () => {
           追加
         </button>
       </div>
+
+      {/* 以下モーダル関連 */}
+      <h2>Modal実装</h2>
+      <button onClick={ShowModal}>Open Modal</button>
+      <InputModal showFlag={showModal} />
     </div>
   );
 };
