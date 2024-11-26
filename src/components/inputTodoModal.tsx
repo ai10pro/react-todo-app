@@ -13,8 +13,8 @@ import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 // Propsの型定義にsetTodosを追加
 type Props = {
   showFlag: boolean;
-  setShowModal: (flag: boolean) => void;
   todos: Todo[];
+  setShowModal: (flag: boolean) => void;
   setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
 };
 
