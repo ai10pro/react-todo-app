@@ -6,7 +6,7 @@ React、TypeScript、Tailwind CSS を使用し、ローカルストレージで�
 
 - 2024年10月24日：プロジェクト開始
 - 2024年11月13日：デプロイ（仮完成）、以降追加機能作成
-- 
+- 2024年11月26日モーダル表示によるTodo追加
 
 ## ライセンス
 
@@ -33,6 +33,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 ## 追加予定機能
+
 - ToDoの編集
 - オーバーレイ表示による編集・追加
 - ToDo追加時の優先度表示を☆印表示に
@@ -41,6 +42,7 @@ SOFTWARE.
 - カレンダー表示
 
 ## 更新ごとに行う処理
+
 ```
 npm run predeploy
 npm run deploy
