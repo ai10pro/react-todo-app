@@ -9,7 +9,7 @@ import { twMerge } from "tailwind-merge";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 
-import InputModal from "./inputTodoModal";
+import InputModal from "./components/inputTodoModal";
 
 const App = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -233,7 +233,7 @@ const App = () => {
       {/* 以下モーダル関連 */}
       <h2>Modal実装</h2>
       <button onClick={ShowModal}>Open Modal</button>
-      <InputModal showFlag={showModal} />
+      <InputModal showFlag={showModal} setShowModal={setShowModal} />
     </div>
   );
 };
