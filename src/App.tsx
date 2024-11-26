@@ -93,6 +93,7 @@ const App = () => {
           新しいタスクを追加
         </button>
         <InputModal
+          modalType={1}
           showFlag={showModal}
           setShowModal={setShowModal}
           todos={todos}

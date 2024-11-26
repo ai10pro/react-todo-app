@@ -8,7 +8,6 @@ type Props = {
   remove: (id: string) => void;
 };
 
-
 const TodoList = (props: Props) => {
   const todos = [...props.todos].sort((a, b) => {
     if (a.isDone !== b.isDone) {
@@ -28,11 +27,10 @@ const TodoList = (props: Props) => {
     <div className="space-y-4">
       {todos.map((todo) => (
         <TodoItem
-          key={todo.id}
           todo={todo}
           updateIsDone={props.updateIsDone}
           remove={props.remove}
-        // updateIsDone={props.updateIsDone}
+          // updateIsDone={props.updateIsDone}
         />
       ))}
     </div>

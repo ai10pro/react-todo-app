@@ -1,4 +1,3 @@
-import React from "react";
 import { twMerge } from "tailwind-merge";
 import { Todo } from "./types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,6 +11,13 @@ type Props = {
 
 const numToStar = (num: number) => {
   return "★".repeat(num);
+  // if (num === 1) {
+  //   return "低";
+  // } else if (num === 2) {
+  //   return "中";
+  // } else if (num === 3) {
+  //   return "高";
+  // }
 };
 
 const TodoItem = (props: Props) => {
@@ -55,10 +61,11 @@ const TodoItem = (props: Props) => {
           >
             削除
           </button>
-
-          <button className="ml-3 rounded-md bg-slate-200 px-2 py-1 text-sm font-bold text-white hover:bg-blue-400">
-            編集
-          </button>
+          <div>
+            <button className="ml-3 rounded-md bg-slate-200 px-2 py-1 text-sm font-bold text-white hover:bg-blue-400">
+              編集
+            </button>
+          </div>
         </div>
       </div>
       <div className="">
