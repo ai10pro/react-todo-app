@@ -142,7 +142,7 @@ const EditTodoModal = (props: Props) => {
 
           <div className="flex gap-5">
             <div className="font-bold">優先度</div>
-            {["低", "中", "高"].map((value, index) => (
+            {["★", "★★", "★★★"].map((value, index) => (
               <label key={value} className="flex items-center space-x-1">
                 <input
                   id={`priority-${index + 1}`}
