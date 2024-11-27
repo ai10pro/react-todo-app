@@ -9,7 +9,9 @@ import InputModal from "./components/inputTodoModal";
 const App = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
 
-  const [showModal, setShowModal] = useState(false);
+  const [NewTodoModal, setNewTodoModal] = useState(false);
+  const [EditModal, setEditTodoModal] = useState(false);
+  const [selectedTodo, setSelectedTodo] = useState<Todo | undefined>(undefined);
 
   const [initialized, setInitialized] = useState(false);
   const localStorageKey = "TodoApp";
@@ -52,6 +54,7 @@ const App = () => {
     });
     setTodos(updatedTodos);
   };
+
   // 完了済みのタスクを削除する関数
   const removeCompletedTodos = () => {
     const updatedTodos = todos.filter((todo) => !todo.isDone);
@@ -63,6 +66,12 @@ const App = () => {
     setTodos(updatedTodos);
   };
 
+  // タスクを編集する関数
+  const edit = (id: string) => {
+    const selectedTodo = todos.filter((todo) => todo.id === id);
+    setSelectedTodo(selectedTodo[0]);
+    setEditTodoModal(true);
+  };
   return (
     <div className="mx-4 mt-10 max-w-2xl md:mx-auto">
       <h1 className="mb-4 text-2xl font-bold">TodoApp</h1>
@@ -72,7 +81,12 @@ const App = () => {
           uncompletedCount={uncompletedCount}
         />
       </div>
-      <TodoList todos={todos} updateIsDone={updateIsDone} remove={remove} />
+      <TodoList
+        todos={todos}
+        updateIsDone={updateIsDone}
+        remove={remove}
+        edit={edit}
+      />
 
       <button
         type="button"
@@ -88,16 +102,26 @@ const App = () => {
       <div>
         <button
           className="mt-5 rounded-md bg-blue-500 px-3 py-1 font-bold text-white hover:bg-blue-600"
-          onClick={() => setShowModal(true)}
+          onClick={() => setNewTodoModal(true)}
         >
           新しいタスクを追加
         </button>
         <InputModal
           modalType={1}
-          showFlag={showModal}
-          setShowModal={setShowModal}
+          showFlag={NewTodoModal}
+          setShowModal={setNewTodoModal}
           todos={todos}
           setTodos={setTodos}
+        />
+      </div>
+      <div>
+        <InputModal
+          modalType={2}
+          showFlag={EditModal}
+          setShowModal={setEditTodoModal}
+          todos={todos}
+          setTodos={setTodos}
+          selectedTodo={selectedTodo}
         />
       </div>
     </div>

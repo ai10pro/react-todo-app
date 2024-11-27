@@ -5,8 +5,10 @@ import { faFile, faFileCircleCheck } from "@fortawesome/free-solid-svg-icons";
 
 type Props = {
   todo: Todo;
+
   updateIsDone: (id: string, value: boolean) => void;
   remove: (id: string) => void;
+  edit: (id: string) => void;
 };
 
 const numToStar = (num: number) => {
@@ -62,7 +64,10 @@ const TodoItem = (props: Props) => {
             削除
           </button>
           <div>
-            <button className="ml-3 rounded-md bg-slate-200 px-2 py-1 text-sm font-bold text-white hover:bg-blue-400">
+            <button
+              onClick={() => props.edit(todo.id)}
+              className="ml-3 rounded-md bg-slate-200 px-2 py-1 text-sm font-bold text-white hover:bg-blue-400"
+            >
               編集
             </button>
           </div>

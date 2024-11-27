@@ -42,8 +42,6 @@ const InputTodoModal = (props: Props) => {
               todos={props.todos}
               setShowModal={props.setShowModal}
               setTodos={props.setTodos}
-              closeModal={closeModal}
-              handleOverlayClick={handleOverlayClick}
             />
           ) : null}
         </div>

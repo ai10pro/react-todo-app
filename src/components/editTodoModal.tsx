@@ -12,10 +12,9 @@ import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 type Props = {
   todo: Todo;
   todos: Todo[];
-  setShowModal: (flag: boolean) => void;
   setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
-  closeModal: () => void;
-  handleOverlayClick: (e: React.MouseEvent<HTMLDivElement>) => void;
+
+  setShowModal: (flag: boolean) => void;
 };
 
 const EditTodoModal = (props: Props) => {
@@ -59,6 +58,9 @@ const EditTodoModal = (props: Props) => {
       todo.id === updatedTodo.id ? updatedTodo : todo
     );
     props.setTodos(updatedTodos); // props.setTodosを使用してtodosを更新
+    setTodoName("");
+    setTodoPriority(3);
+    setTodoDeadline(null);
     closeModal();
   };
 
