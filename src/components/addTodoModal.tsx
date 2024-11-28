@@ -74,6 +74,12 @@ const AddTodoModal = (props: Props) => {
       case "3":
         setNewTodoPriority(3);
         break;
+      case "4":
+        setNewTodoPriority(4);
+        break;
+      case "5":
+        setNewTodoPriority(5);
+        break;
     }
   };
 
@@ -89,7 +95,7 @@ const AddTodoModal = (props: Props) => {
         className="fixed left-0 top-0 flex size-full items-center justify-center bg-black/50"
         onClick={props.handleOverlayClick}
       >
-        <div className="mt-5 w-3/4 max-w-2xl space-y-2 rounded-sm bg-white p-10">
+        <div className="size-full space-y-2 rounded-sm bg-white p-10 pt-20 md:h-auto md:w-3/4 md:max-w-2xl md:pt-10">
           <h2 className="text-lg font-bold">新しいタスクの追加</h2>
           <div>
             <div className="flex items-center space-x-2">
@@ -121,7 +127,7 @@ const AddTodoModal = (props: Props) => {
 
           <div className="flex gap-5">
             <div className="font-bold">優先度</div>
-            {["★", "★★", "★★★"].map((value, index) => (
+            {["1", "2", "3", "4", "5"].map((value, index) => (
               <label key={value} className="flex items-center space-x-1">
                 <input
                   id={`priority-${index + 1}`}
@@ -162,6 +168,15 @@ const AddTodoModal = (props: Props) => {
             )}
           >
             追加
+          </button>
+          <button
+            type="button"
+            onClick={props.closeModal}
+            className={twMerge(
+              "ml-3 rounded-md bg-slate-500 px-3 py-1 font-bold text-white hover:bg-red-400"
+            )}
+          >
+            キャンセル
           </button>
         </div>
       </div>

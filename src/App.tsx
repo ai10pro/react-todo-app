@@ -75,11 +75,18 @@ const App = () => {
   return (
     <div className="mx-4 mt-10 max-w-2xl md:mx-auto">
       <h1 className="mb-4 text-2xl font-bold">TodoApp</h1>
+
       <div className="mb-4">
         <WelcomeMessage
           name="寝屋川タヌキ"
           uncompletedCount={uncompletedCount}
         />
+        <button
+          className="mt-5 rounded-md bg-blue-500 px-3 py-1 font-bold text-white hover:bg-blue-600"
+          onClick={() => setNewTodoModal(true)}
+        >
+          新しいタスクを追加
+        </button>
       </div>
       <TodoList
         todos={todos}
@@ -100,12 +107,6 @@ const App = () => {
 
       {/* 以下モーダル関連 */}
       <div>
-        <button
-          className="mt-5 rounded-md bg-blue-500 px-3 py-1 font-bold text-white hover:bg-blue-600"
-          onClick={() => setNewTodoModal(true)}
-        >
-          新しいタスクを追加
-        </button>
         <InputModal
           modalType={1}
           showFlag={NewTodoModal}

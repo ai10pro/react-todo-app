@@ -92,6 +92,12 @@ const EditTodoModal = (props: Props) => {
       case "3":
         setTodoPriority(3);
         break;
+      case "4":
+        setTodoPriority(4);
+        break;
+      case "5":
+        setTodoPriority(5);
+        break;
     }
   };
 
@@ -108,7 +114,7 @@ const EditTodoModal = (props: Props) => {
         onClick={handleOverlayClick}
       >
         <div
-          className="mt-5 w-3/4 max-w-2xl space-y-2 rounded-sm bg-white p-10"
+          className="size-full space-y-2 rounded-sm bg-white p-10 pt-20 md:h-auto md:w-3/4 md:max-w-2xl md:pt-10"
           onClick={(e) => e.stopPropagation()}
         >
           <h2 className="text-lg font-bold">タスクの編集</h2>
@@ -142,7 +148,7 @@ const EditTodoModal = (props: Props) => {
 
           <div className="flex gap-5">
             <div className="font-bold">優先度</div>
-            {["★", "★★", "★★★"].map((value, index) => (
+            {["1", "2", "3", "4", "5"].map((value, index) => (
               <label key={value} className="flex items-center space-x-1">
                 <input
                   id={`priority-${index + 1}`}
@@ -183,6 +189,15 @@ const EditTodoModal = (props: Props) => {
             )}
           >
             保存
+          </button>
+          <button
+            type="button"
+            onClick={closeModal}
+            className={twMerge(
+              "ml-3 rounded-md bg-slate-500 px-3 py-1 font-bold text-white hover:bg-red-400"
+            )}
+          >
+            キャンセル
           </button>
         </div>
       </div>
